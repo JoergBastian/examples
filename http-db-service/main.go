@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -31,7 +32,7 @@ func main() {
 
 	orderHandler := handler.NewOrderHandler(repo)
 
-	if err := startService(orderHandler, cfg.Port); err != nil {
+	if err := startService(orderHandler, os.Getenv("PORT")); err != nil {
 		log.Fatal("Unable to start server", err)
 	}
 }
